@@ -1,5 +1,14 @@
 import React from "react";
-import { Mail, MapPin, Calendar, Pencil, Github, Linkedin, Globe, Download } from "lucide-react";
+import {
+  Mail,
+  MapPin,
+  Calendar,
+  Pencil,
+  Github,
+  Linkedin,
+  Globe,
+  Download,
+} from "lucide-react";
 
 export default function InterviewerProfileCard({ interviewer }) {
   return (
@@ -11,9 +20,11 @@ export default function InterviewerProfileCard({ interviewer }) {
             alt={interviewer.name}
             className="w-20 h-20 sm:w-24 sm:h-24 lg:w-[120px] lg:h-[120px] rounded-full object-cover border-4 border-yellow-300 shadow-lg"
           />
-          <span className={`absolute bottom-2 right-2 w-3 h-3 sm:w-4 sm:h-4 rounded-full border-[3px] border-white ${
-            interviewer.isOnline ? "bg-emerald-500" : "bg-gray-400"
-          }`} />
+          <span
+            className={`absolute bottom-2 right-2 w-3 h-3 sm:w-4 sm:h-4 rounded-full border-[3px] border-white ${
+              interviewer.isOnline ? "bg-emerald-500" : "bg-gray-400"
+            }`}
+          />
         </div>
 
         <button className="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-gray-100 px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-medium text-gray-700 transition hover:bg-gray-200 hover:border-gray-400">
@@ -23,7 +34,9 @@ export default function InterviewerProfileCard({ interviewer }) {
       </div>
 
       <div className="text-left">
-        <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">{interviewer.name}</h2>
+        <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">
+          {interviewer.name}
+        </h2>
 
         <div className="flex flex-col gap-2 sm:gap-3 mb-4 sm:mb-6">
           <div className="flex items-center gap-2 sm:gap-3 text-xs sm:text-sm text-gray-600">
@@ -41,7 +54,9 @@ export default function InterviewerProfileCard({ interviewer }) {
         </div>
 
         <div className="bg-gray-50 rounded-lg p-3 sm:p-4 mb-4 sm:mb-6">
-          <p className="text-xs sm:text-sm leading-5 sm:leading-6 text-gray-700">{interviewer.bio}</p>
+          <p className="text-xs sm:text-sm leading-5 sm:leading-6 text-gray-700">
+            {interviewer.bio}
+          </p>
         </div>
 
         <div>

@@ -54,7 +54,9 @@ export default function InterviewerStats({ stats }) {
             <div className="text-xl sm:text-2xl lg:text-[2rem] font-bold leading-none text-gray-900">
               {it.value}
             </div>
-            <div className="text-xs sm:text-sm font-medium text-gray-600 mt-1">{it.label}</div>
+            <div className="text-xs sm:text-sm font-medium text-gray-600 mt-1">
+              {it.label}
+            </div>
           </div>
         </div>
       ))}

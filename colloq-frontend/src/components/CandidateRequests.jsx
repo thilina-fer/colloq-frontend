@@ -1,11 +1,20 @@
 import React from "react";
-import { CalendarDays, Clock, MessageSquareText, CheckCircle, XCircle, Eye } from "lucide-react";
+import {
+  CalendarDays,
+  Clock,
+  MessageSquareText,
+  CheckCircle,
+  XCircle,
+  Eye,
+} from "lucide-react";
 
 export default function CandidateRequests({ requests, onApprove, onDecline }) {
   return (
     <section className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-6 shadow-md mb-6 sm:mb-8">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4 mb-4 sm:mb-6 pb-3 sm:pb-4 border-b border-gray-200">
-        <h3 className="text-base sm:text-lg lg:text-xl font-bold text-gray-900">Candidate Requests</h3>
+        <h3 className="text-base sm:text-lg lg:text-xl font-bold text-gray-900">
+          Candidate Requests
+        </h3>
         <span className="text-xs sm:text-sm font-medium text-gray-500">
           {requests.length} requests
         </span>
@@ -24,7 +33,9 @@ export default function CandidateRequests({ requests, onApprove, onDecline }) {
                 "flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3 sm:gap-4 lg:gap-6 p-3 sm:p-4 lg:p-6 rounded-lg sm:rounded-xl border border-gray-200",
                 "transition hover:border-yellow-300 hover:shadow-md hover:-translate-y-0.5",
                 "opacity-0 animate-[fadeInUp_0.4s_ease-out_forwards]",
-                idx === 0 ? "[animation-delay:100ms]" : "[animation-delay:200ms]",
+                idx === 0
+                  ? "[animation-delay:100ms]"
+                  : "[animation-delay:200ms]",
               ].join(" ")}
             >
               <div className="flex gap-3 sm:gap-4 flex-1 min-w-0">

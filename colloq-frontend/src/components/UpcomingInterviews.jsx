@@ -2,12 +2,14 @@ import React from "react";
 import { CalendarDays, Clock } from "lucide-react";
 
 export default function UpcomingInterviews({ interviews }) {
-  const approvedInterviews = interviews.filter(i => i.status === "approved");
+  const approvedInterviews = interviews.filter((i) => i.status === "approved");
 
   return (
     <section className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-6 shadow-md mb-6 sm:mb-8">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4 mb-4 sm:mb-6 pb-3 sm:pb-4 border-b border-gray-200">
-        <h3 className="text-base sm:text-lg lg:text-xl font-bold text-gray-900">Upcoming Interviews</h3>
+        <h3 className="text-base sm:text-lg lg:text-xl font-bold text-gray-900">
+          Upcoming Interviews
+        </h3>
         <span className="text-xs sm:text-sm font-medium text-gray-500">
           {approvedInterviews.length} interviews
         </span>
@@ -15,7 +17,9 @@ export default function UpcomingInterviews({ interviews }) {
 
       {approvedInterviews.length === 0 ? (
         <div className="text-center py-8">
-          <p className="text-xs sm:text-sm text-gray-600">No upcoming interviews scheduled yet.</p>
+          <p className="text-xs sm:text-sm text-gray-600">
+            No upcoming interviews scheduled yet.
+          </p>
         </div>
       ) : (
         <div className="flex flex-col gap-3 sm:gap-4">
@@ -26,7 +30,9 @@ export default function UpcomingInterviews({ interviews }) {
                 "flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3 sm:gap-4 lg:gap-6 p-3 sm:p-4 lg:p-6 rounded-lg sm:rounded-xl border border-gray-200",
                 "transition hover:border-yellow-300 hover:shadow-md hover:-translate-y-0.5",
                 "opacity-0 animate-[fadeInUp_0.4s_ease-out_forwards]",
-                idx === 0 ? "[animation-delay:100ms]" : "[animation-delay:200ms]",
+                idx === 0
+                  ? "[animation-delay:100ms]"
+                  : "[animation-delay:200ms]",
               ].join(" ")}
             >
               <div className="flex gap-3 sm:gap-4 flex-1 min-w-0">
