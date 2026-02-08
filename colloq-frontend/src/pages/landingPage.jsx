@@ -1,5 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
-import { ArrowRight, Menu, X, Target, Briefcase, Check } from "lucide-react";
+import {
+  ArrowRight,
+  Menu,
+  X,
+  Target,
+  Briefcase,
+  Check,
+  Linkedin,
+  Github,
+  Instagram,
+  Mail,
+} from "lucide-react";
 
 import ColloQLogo from "../components/logo";
 import PricingCard from "../components/pricingCards";
@@ -86,13 +97,13 @@ export default function LandingPage() {
         {/* Yellow Gradient Effects */}
         <div className="absolute inset-0">
           {/* Top yellow glow */}
-          <div className="pointer-events-none absolute -top-32 left-1/2 h-[360px] w-[560px] -translate-x-1/2 rounded-full bg-gradient-to-b from-yellow-300/40 via-yellow-200/30 to-transparent blur-3xl sm:-top-44 sm:h-[520px] sm:w-[980px]" />
+          <div className="pointer-events-none absolute -top-32 left-1/2 h-[360px] w-[560px] -translate-x-1/2 rounded-full bg-gradient-to-b from-yellow-300/40 via-yellow-200/30 to-transparent blur-3xl sm:-top-44 sm:w-[980px]" />
 
           {/* Center yellow accent */}
-          <div className="pointer-events-none absolute top-1/3 left-1/4 h-[300px] w-[300px] rounded-full bg-yellow-400/20 blur-3xl sm:h-[400px] sm:w-[400px]" />
+          <div className="pointer-events-none absolute top-1/3 left-1/4 h-[300px] w-[300px] rounded-full bg-yellow-400/20 blur-3xl  sm:w-[400px]" />
 
           {/* Bottom subtle glow */}
-          <div className="pointer-events-none absolute -bottom-32 left-1/2 h-[360px] w-[560px] -translate-x-1/2 rounded-full bg-gradient-to-t from-yellow-100/30 to-transparent blur-3xl sm:-bottom-44 sm:h-[520px] sm:w-[980px]" />
+          <div className="pointer-events-none absolute  left-1/2 h-[360px] w-[560px] -translate-x-1/2 rounded-full bg-gradient-to-t from-yellow-100/30 to-transparent blur-3xl  sm:w-[980px]" />
         </div>
 
         {/* Navbar */}
@@ -418,6 +429,122 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+
+      {/* Footer Section */}
+      <footer className="relative bg-gray-900 text-gray-300">
+        {/* subtle overlay */}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 opacity-80" />
+
+        <div className="relative mx-auto max-w-7xl px-4 py-14 sm:px-6">
+          {/* Top grid */}
+          <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-4">
+            {/* Brand */}
+            <div>
+              <ColloQLogo size="text-2xl" />
+              <p className="mt-4 max-w-xs text-sm text-gray-400">
+                ColoQ helps candidates prepare for real interviews with industry
+                experts through structured mock sessions and feedback.
+              </p>
+            </div>
+
+            {/* Product */}
+            <div>
+              <h4 className="mb-4 text-sm font-semibold uppercase tracking-wide text-gray-100">
+                Product
+              </h4>
+              <ul className="space-y-2 text-sm">
+                <li>
+                  <a href="#features" className="hover:text-white transition">
+                    Features
+                  </a>
+                </li>
+                <li>
+                  <a href="#pricing" className="hover:text-white transition">
+                    Pricing
+                  </a>
+                </li>
+                <li>
+                  <a href="#how" className="hover:text-white transition">
+                    How It Works
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Company */}
+            <div>
+              <h4 className="mb-4 text-sm font-semibold uppercase tracking-wide text-gray-100">
+                Company
+              </h4>
+              <ul className="space-y-2 text-sm">
+                <li>
+                  <a href="#" className="hover:text-white transition">
+                    About
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition">
+                    Careers
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition">
+                    Contact
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Newsletter */}
+            <div>
+              <h4 className="mb-4 text-sm font-semibold uppercase tracking-wide text-gray-100">
+                Stay Updated
+              </h4>
+              <p className="mb-4 text-sm text-gray-400">
+                Get interview tips and platform updates.
+              </p>
+              <div className="flex overflow-hidden rounded-lg border border-gray-700 bg-gray-800">
+                <input
+                  type="email"
+                  placeholder="Email address"
+                  className="flex-1 bg-transparent px-3 py-2 text-sm text-gray-200 placeholder-gray-400 outline-none"
+                />
+                <button className="bg-yellow-400 px-4 text-sm font-semibold text-black hover:bg-yellow-300">
+                  Join
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div className="my-10 h-px bg-gray-700" />
+
+          {/* Bottom bar */}
+          <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
+            <p className="text-xs text-gray-500">
+              © {new Date().getFullYear()} ColoQ. All rights reserved.
+            </p>
+
+            <div className="flex items-center gap-4">
+              <a href="#" className="text-gray-400 hover:text-white transition">
+                <Linkedin size={18} />
+              </a>
+              <a href="#" className="text-gray-400 hover:text-white transition">
+                <Github size={18} />
+              </a>
+              <a href="#" className="text-gray-400 hover:text-white transition">
+                <Instagram size={18} />
+              </a>
+              <a
+                href="mailto:support@coloq.com"
+                className="text-gray-400 hover:text-white transition"
+              >
+                <Mail size={18} />
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
     </>
   );
 }
