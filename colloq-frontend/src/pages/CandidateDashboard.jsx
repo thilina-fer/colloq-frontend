@@ -85,30 +85,28 @@ export default function CandidateDashboard() {
       `}</style>
 
       {/* Header */}
-      <header className="sticky top-0 z-[100] bg-white border-b border-gray-200 shadow-sm px-8 py-6 md:px-6 md:py-5 sm:px-4 sm:py-4">
-        <div className="max-w-[1400px] mx-auto flex items-center justify-between gap-8 md:flex-col md:items-start md:gap-4">
-          <h1 className="text-[1.75rem] font-bold text-gray-900 md:text-[1.375rem] sm:text-[1.125rem]">
+      <header className="sticky top-0 z-[100] bg-white border-b border-gray-200 shadow-sm px-4 py-4 sm:px-6 sm:py-5 lg:px-8 lg:py-6">
+        <div className="max-w-[1400px] mx-auto flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
+          <h1 className="text-base sm:text-lg lg:text-[1.75rem] font-bold text-gray-900 break-words">
             👋 Hello {user.name.split(" ")[0]}, this is your dashboard!
           </h1>
 
-          <div className="flex items-center gap-4">
-            <button className="inline-flex items-center gap-2 rounded-xl border border-gray-300 bg-white px-6 py-3 text-sm font-semibold text-gray-900 transition hover:bg-gray-50 hover:border-gray-400">
-              <span className="text-lg">🎁</span>
-              Refer & Earn
-            </button>
-          </div>
+          <button className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl border border-gray-300 bg-white px-4 py-2.5 sm:px-5 sm:py-3 lg:px-6 lg:py-3 text-xs sm:text-sm lg:text-sm font-semibold text-gray-900 transition hover:bg-gray-50 hover:border-gray-400 whitespace-nowrap">
+            <span className="text-lg sm:text-xl">🎁</span>
+            Refer & Earn
+          </button>
         </div>
       </header>
 
       {/* Main Grid */}
-      <main className="max-w-[1400px] mx-auto p-8 grid grid-cols-[350px_1fr] gap-8 items-start xl:grid-cols-[320px_1fr] xl:gap-6 lg:grid-cols-1 lg:gap-6 md:p-6 sm:p-4">
+      <main className="max-w-[1400px] mx-auto p-4 sm:p-6 lg:p-8 grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-[350px_1fr] lg:gap-8 items-start">
         {/* Left Column */}
-        <div>
+        <div className="w-full">
           <ProfileCard user={user} />
         </div>
 
         {/* Right Column */}
-        <div>
+        <div className="w-full min-w-0">
           <SessionStats sessions={sessions} />
           <BookingSection />
           <UpcomingSessions sessions={upcomingSessions} />

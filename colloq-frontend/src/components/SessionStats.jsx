@@ -1,7 +1,9 @@
 import React from "react";
 import { CheckCircle2, Clock3, BarChart3 } from "lucide-react";
 
-export default function SessionStats({ sessions }) {
+export default function SessionStats({
+  sessions = { completed: 0, pending: 0, total: 0 },
+}) {
   const items = [
     {
       key: "completed",
@@ -30,12 +32,12 @@ export default function SessionStats({ sessions }) {
   ];
 
   return (
-    <section className="grid grid-cols-3 gap-4 mb-8 md:grid-cols-3 sm:grid-cols-1">
+    <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-4 mb-6 sm:mb-8">
       {items.map((it) => (
         <div
           key={it.key}
           className={[
-            "bg-white rounded-2xl p-6 shadow-md flex items-center gap-4",
+            "bg-white rounded-lg sm:rounded-xl lg:rounded-2xl p-3 sm:p-4 lg:p-6 shadow-md flex items-center gap-3 sm:gap-4",
             "transition hover:-translate-y-1 hover:shadow-lg",
             "[animation:fadeInUp_0.4s_ease-out] opacity-0 animate-[fadeInUp_0.4s_ease-out_forwards]",
             `[animation-delay:${it.delay}]`,
@@ -43,7 +45,7 @@ export default function SessionStats({ sessions }) {
         >
           <div
             className={[
-              "w-12 h-12 rounded-xl flex items-center justify-center shrink-0",
+              "w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl flex items-center justify-center shrink-0",
               it.iconWrap,
             ].join(" ")}
           >
@@ -51,10 +53,12 @@ export default function SessionStats({ sessions }) {
           </div>
 
           <div className="flex-1">
-            <div className="text-[2rem] font-bold leading-none text-gray-900 mb-1">
+            <div className="text-xl sm:text-2xl lg:text-[2rem] font-bold leading-none text-gray-900">
               {it.value}
             </div>
-            <div className="text-sm font-medium text-gray-600">{it.label}</div>
+            <div className="text-xs sm:text-sm font-medium text-gray-600 mt-1">
+              {it.label}
+            </div>
           </div>
         </div>
       ))}
