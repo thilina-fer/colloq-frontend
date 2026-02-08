@@ -1,12 +1,10 @@
 import React from "react";
-import DottedBackground from "./components/backgroundEffect";
-import ColloQLogo from "./components/logo";
+import HeroSection from "./pages/landingPage";
 
 function App() {
   return (
     <>
-      <DottedBackground />
-      <ColloQLogo />  
+      <HeroSection />
     </>
   );
 }
