@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { ArrowRight, Menu, X, Target, Briefcase, Check } from "lucide-react";
 
 import ColloQLogo from "../components/logo";
+import PricingCard from "../components/pricingCards";
 
 export default function LandingPage() {
   const [open, setOpen] = useState(false);
@@ -27,6 +28,57 @@ export default function LandingPage() {
     return () => document.removeEventListener("keydown", onKey);
   }, []);
 
+  // Pricing data array
+  const pricingPlans = [
+    {
+      name: "Basic",
+      price: "$29",
+      period: "per session",
+      description: "Perfect for getting started with mock interviews",
+      features: [
+        "1 Mock Interview Session",
+        "Basic feedback report",
+        "Session recording",
+        "Email support",
+      ],
+      highlighted: false,
+      buttonText: "Get Started",
+    },
+    {
+      name: "Professional",
+      price: "$79",
+      period: "per month",
+      description: "Most popular for serious job seekers",
+      features: [
+        "4 Mock Interview Sessions",
+        "Detailed feedback reports",
+        "Session recordings",
+        "Priority email support",
+        "Resume review",
+        "Interview prep resources",
+      ],
+      highlighted: true,
+      buttonText: "Start Now",
+    },
+    {
+      name: "Enterprise",
+      price: "$199",
+      period: "per month",
+      description: "For teams and organizations",
+      features: [
+        "Unlimited mock interviews",
+        "Advanced analytics",
+        "All session recordings",
+        "24/7 priority support",
+        "Custom interview scenarios",
+        "Team management dashboard",
+        "Dedicated account manager",
+      ],
+      highlighted: false,
+      buttonText: "Contact Sales",
+    },
+  ];
+
   return (
     <>
       {/* Hero Section */}
@@ -34,13 +86,13 @@ export default function LandingPage() {
         {/* Yellow Gradient Effects */}
         <div className="absolute inset-0">
           {/* Top yellow glow */}
-          <div className="pointer-events-none absolute -top-32 left-1/2 h-[360px] w-[560px] -translate-x-1/2 rounded-full bg-gradient-to-b from-yellow-300/40 via-yellow-200/30 to-transparent blur-3xl sm:-top-44 sm:w-[980px]" />
+          <div className="pointer-events-none absolute -top-32 left-1/2 h-[360px] w-[560px] -translate-x-1/2 rounded-full bg-gradient-to-b from-yellow-300/40 via-yellow-200/30 to-transparent blur-3xl sm:-top-44 sm:h-[520px] sm:w-[980px]" />
 
           {/* Center yellow accent */}
-          <div className="pointer-events-none absolute top-1/3 left-1/4 h-[300px] w-[300px] rounded-full bg-yellow-400/20 blur-3xl  sm:w-[400px]" />
+          <div className="pointer-events-none absolute top-1/3 left-1/4 h-[300px] w-[300px] rounded-full bg-yellow-400/20 blur-3xl sm:h-[400px] sm:w-[400px]" />
 
           {/* Bottom subtle glow */}
-          <div className="pointer-events-none absolute left-1/2 h-[360px] w-[560px] -translate-x-1/2 rounded-full bg-gradient-to-t from-yellow-100/30 to-transparent blur-3xl  sm:w-[980px]" />
+          <div className="pointer-events-none absolute -bottom-32 left-1/2 h-[360px] w-[560px] -translate-x-1/2 rounded-full bg-gradient-to-t from-yellow-100/30 to-transparent blur-3xl sm:-bottom-44 sm:h-[520px] sm:w-[980px]" />
         </div>
 
         {/* Navbar */}
@@ -167,7 +219,7 @@ export default function LandingPage() {
             </div>
 
             {/* Title */}
-            <h1 className="mt-20 font-bold leading-[1.05] text-black text-[34px] sm:text-[52px] md:text-[72px] lg:text-[80px]">
+            <h1 className="mt-8 font-bold leading-[1.05] text-black text-[34px] sm:text-[52px] md:text-[72px] lg:text-[80px]">
               How top professionals{" "}
               <span className="block bg-gradient-to-r from-yellow-400 via-yellow-500 to-gray-800 bg-clip-text text-transparent">
                 prepare for interviews
@@ -175,14 +227,14 @@ export default function LandingPage() {
             </h1>
 
             {/* Subtitle */}
-            <p className="mt-15 max-w-2xl text-sm font-normal leading-relaxed text-gray-600 sm:text-base  md:text-lg">
+            <p className="mt-6 max-w-2xl text-sm font-normal leading-relaxed text-gray-600 sm:text-base md:mt-8 md:text-lg">
               Practical interview prep loved by 100,000+ candidates and hiring
               managers. Master your next big opportunity with real-world
               practice.
             </p>
 
             {/* CTA */}
-            <div className="mt-15 flex w-full max-w-md flex-col gap-3  sm:max-w-none sm:flex-row sm:justify-center sm:gap-4">
+            <div className="mt-8 flex w-full max-w-md flex-col gap-3 sm:mt-10 sm:max-w-none sm:flex-row sm:justify-center sm:gap-4">
               <button className="w-full rounded-xl border border-gray-300 bg-white px-6 py-3 text-sm font-bold text-black shadow-sm hover:bg-gray-100 transition sm:w-auto sm:px-7 sm:py-4">
                 Book a Session
               </button>
@@ -209,7 +261,7 @@ export default function LandingPage() {
             <p className="mb-3 text-sm font-semibold tracking-wide text-teal-500">
               WHY COLOQ
             </p>
-            <h2 className="mb-4 text-3xl font-bold leading-tight text-gray-900 sm:text-4xl md:text-5xl block bg-gradient-to-r from-yellow-400 via-yellow-500 to-gray-800 bg-clip-text text-transparent">
+            <h2 className="mb-4 text-3xl font-bold leading-tight text-gray-900 sm:text-4xl md:text-5xl">
               Two Sides, One Mission
             </h2>
             <p className="mx-auto max-w-3xl text-base leading-relaxed text-gray-600 sm:text-lg">
@@ -311,6 +363,32 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+
+      {/* Pricing Section */}
+      <section className="bg-gray-50 px-4 py-16 sm:px-6 sm:py-20 md:py-24">
+        <div className="mx-auto max-w-7xl">
+          {/* Header */}
+          <div className="mb-12 text-center sm:mb-16">
+            <p className="mb-3 text-sm font-semibold tracking-wide text-yellow-500">
+              PRICING
+            </p>
+            <h2 className="mb-4 text-3xl font-bold leading-tight text-gray-900 sm:text-4xl md:text-5xl">
+              Choose Your Plan
+            </h2>
+            <p className="mx-auto max-w-3xl text-base leading-relaxed text-gray-600 sm:text-lg">
+              Select the perfect plan for your interview preparation journey
+            </p>
+          </div>
+
+          {/* Pricing Cards */}
+          <div className="grid gap-6 md:grid-cols-3 md:gap-8">
+            {pricingPlans.map((plan, index) => (
+              <PricingCard key={index} {...plan} />
+            ))}
+          </div>
+        </div>
+      </section>
+      
     </>
   );
 }
@@ -334,4 +412,7 @@ function Bubble({ className = "", children, faint = false, size = "md" }) {
       {children}
     </div>
   );
+
 }
+
+
