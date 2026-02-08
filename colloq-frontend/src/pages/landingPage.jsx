@@ -388,7 +388,36 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-      
+
+      {/* ////////////////////////////////////////////////////////////////////////// */}
+      <section className="relative overflow-hidden bg-gray-100">
+        {/* Soft subtle texture */}
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.05),transparent_60%)]" />
+
+        {/* Content */}
+        <div className="relative mx-auto flex max-w-7xl flex-col items-center px-4 py-16 text-center sm:px-6 sm:py-20 md:py-24">
+          <h2 className="font-serif text-3xl font-extrabold leading-tight text-gray-900 sm:text-4xl md:text-5xl">
+            Ready to Ace Your
+            <br />
+            Interview?
+          </h2>
+
+          <p className="mt-5 max-w-2xl text-sm leading-relaxed text-gray-600 sm:text-base">
+            Join thousands of successful candidates who’ve transformed their
+            interview skills with MockPro. Your dream job is one session away.
+          </p>
+
+          <div className="mt-10 flex w-full max-w-md flex-col gap-3 sm:max-w-none sm:flex-row sm:justify-center sm:gap-4">
+            <button className="rounded-lg bg-black px-8 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-gray-900">
+              Book Your Session
+            </button>
+
+            <button className="rounded-lg border border-gray-400 bg-transparent px-8 py-3 text-sm font-semibold text-gray-800 shadow-sm transition hover:border-gray-600 hover:bg-gray-200">
+              Become an Expert
+            </button>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
@@ -412,7 +441,4 @@ function Bubble({ className = "", children, faint = false, size = "md" }) {
       {children}
     </div>
   );
-
 }
-
-
