@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react";
+import DottedBackground from "./components/backgroundEffect";
 
 function App() {
-  return (
-    <div>App</div>
-  )
+  return <DottedBackground />;
 }
 
-export default App
+export default App;
