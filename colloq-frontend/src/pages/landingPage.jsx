@@ -14,6 +14,7 @@ import {
 
 import ColloQLogo from "../components/logo";
 import PricingCard from "../components/pricingCards";
+import ChatbotWidget from "../components/ChatbotWidget";
 
 export default function LandingPage() {
   const [open, setOpen] = useState(false);
@@ -545,6 +546,8 @@ export default function LandingPage() {
           </div>
         </div>
       </footer>
+
+      <ChatbotWidget />
     </>
   );
 }
