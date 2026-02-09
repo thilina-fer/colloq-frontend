@@ -28,7 +28,8 @@ export default function LandingPage() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const docHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
       const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
       setScrollProgress(scrollPercent);
       setScrollY(scrollTop);
@@ -49,7 +50,7 @@ export default function LandingPage() {
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     sectionsRef.current.forEach((section) => {
@@ -252,7 +253,10 @@ export default function LandingPage() {
       `}</style>
 
       {/* Hero Section */}
-      <section ref={heroRef} className="relative overflow-hidden bg-white text-black">
+      <section
+        ref={heroRef}
+        className="relative overflow-hidden bg-white text-black"
+      >
         {/* Yellow Gradient Effects - Parallax */}
         <div
           className="absolute inset-0 parallax-bg"
@@ -380,8 +384,15 @@ export default function LandingPage() {
           </Bubble>
 
           {/* faint empty circles */}
-          <Bubble className="animate-fadeIn delay-400 animate-float left-[25%] top-[22%]" faint />
-          <Bubble className="animate-fadeIn delay-500 animate-float left-[70%] top-[28%]" faint size="lg" />
+          <Bubble
+            className="animate-fadeIn delay-400 animate-float left-[25%] top-[22%]"
+            faint
+          />
+          <Bubble
+            className="animate-fadeIn delay-500 animate-float left-[70%] top-[28%]"
+            faint
+            size="lg"
+          />
         </div>
 
         {/* Hero content */}
