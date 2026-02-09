@@ -18,7 +18,50 @@ import ChatbotWidget from "../components/ChatbotWidget";
 
 export default function LandingPage() {
   const [open, setOpen] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [scrollY, setScrollY] = useState(0);
   const panelRef = useRef(null);
+  const heroRef = useRef(null);
+  const sectionsRef = useRef([]);
+
+  // Scroll progress tracking
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      setScrollProgress(scrollPercent);
+      setScrollY(scrollTop);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Intersection Observer for fade-in animations
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("scroll-fade-in");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    sectionsRef.current.forEach((section) => {
+      if (section) observer.observe(section);
+    });
+
+    return () => {
+      sectionsRef.current.forEach((section) => {
+        if (section) observer.unobserve(section);
+      });
+    };
+  }, []);
 
   // close on outside click (mobile menu)
   useEffect(() => {
@@ -93,10 +136,130 @@ export default function LandingPage() {
 
   return (
     <>
+      {/* Scroll Progress Bar */}
+      <div
+        className="scroll-progress-bar"
+        style={{ width: `${scrollProgress}%` }}
+      />
+
+      <style>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+
+        @keyframes float {
+          0%, 100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
+        }
+
+        @keyframes slideInLeft {
+          from {
+            opacity: 0;
+            transform: translateX(-50px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        @keyframes slideInRight {
+          from {
+            opacity: 0;
+            transform: translateX(50px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        .animate-fadeInUp {
+          animation: fadeInUp 0.8s ease-out forwards;
+          opacity: 0;
+        }
+
+        .animate-fadeIn {
+          animation: fadeIn 0.8s ease-out forwards;
+          opacity: 0;
+        }
+
+        .animate-float {
+          animation: float 3s ease-in-out infinite;
+        }
+
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+        .delay-600 { animation-delay: 0.6s; }
+
+        /* Scroll progress bar */
+        .scroll-progress-bar {
+          position: fixed;
+          top: 0;
+          left: 0;
+          height: 3px;
+          background: linear-gradient(90deg, #fbbf24, #f59e0b, #fbbf24);
+          z-index: 999;
+          box-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
+          transition: width 0.1s ease-out;
+        }
+
+        /* Scroll fade-in animation */
+        .scroll-section {
+          opacity: 0;
+          transform: translateY(30px);
+          transition: all 0.8s ease-out;
+        }
+
+        .scroll-fade-in {
+          opacity: 1 !important;
+          transform: translateY(0) !important;
+        }
+
+        /* Smooth scroll behavior */
+        html {
+          scroll-behavior: smooth;
+        }
+
+        /* Parallax effect for background */
+        .parallax-bg {
+          will-change: transform;
+          transform-origin: center;
+        }
+      `}</style>
+
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-white text-black">
-        {/* Yellow Gradient Effects */}
-        <div className="absolute inset-0">
+      <section ref={heroRef} className="relative overflow-hidden bg-white text-black">
+        {/* Yellow Gradient Effects - Parallax */}
+        <div
+          className="absolute inset-0 parallax-bg"
+          style={{
+            transform: `translateY(${scrollY * 0.5}px)`,
+          }}
+        >
           {/* Top yellow glow */}
           <div className="pointer-events-none absolute -top-32 left-1/2 h-[360px] w-[560px] -translate-x-1/2 rounded-full bg-gradient-to-b from-yellow-300/40 via-yellow-200/30 to-transparent blur-3xl sm:-top-44 sm:w-[980px]" />
 
@@ -192,46 +355,46 @@ export default function LandingPage() {
 
         {/* Floating bubbles (hide on small screens to avoid overlap) */}
         <div className="pointer-events-none absolute inset-0 z-[5] hidden sm:block">
-          <Bubble className="left-[5%] top-[18%]">
+          <Bubble className="animate-fadeIn delay-200 animate-float left-[5%] top-[18%]">
             <span className="font-bold text-yellow-500">G</span>
           </Bubble>
 
-          <Bubble className="left-[12%] top-[46%]">
+          <Bubble className="animate-fadeIn delay-300 animate-float left-[12%] top-[46%]">
             <span className="text-xl font-semibold text-gray-700">∞</span>
           </Bubble>
 
-          <Bubble className="right-[12%] top-[20%]">
+          <Bubble className="animate-fadeIn delay-400 animate-float right-[12%] top-[20%]">
             <span className="text-2xl font-bold text-black">N</span>
           </Bubble>
 
-          <Bubble className="right-[6%] top-[30%]">
+          <Bubble className="animate-fadeIn delay-500 animate-float right-[6%] top-[30%]">
             <span className="text-2xl font-bold text-yellow-500">S</span>
           </Bubble>
 
-          <Bubble className="right-[10%] top-[56%]">
+          <Bubble className="animate-fadeIn delay-600 animate-float right-[10%] top-[56%]">
             <span className="text-sm font-semibold text-gray-800">Uber</span>
           </Bubble>
 
-          <Bubble className="right-[18%] top-[80%]">
+          <Bubble className="animate-fadeIn delay-300 animate-float right-[18%] top-[80%]">
             <span className="text-xl">🏠</span>
           </Bubble>
 
           {/* faint empty circles */}
-          <Bubble className="left-[25%] top-[22%]" faint />
-          <Bubble className="left-[70%] top-[28%]" faint size="lg" />
+          <Bubble className="animate-fadeIn delay-400 animate-float left-[25%] top-[22%]" faint />
+          <Bubble className="animate-fadeIn delay-500 animate-float left-[70%] top-[28%]" faint size="lg" />
         </div>
 
         {/* Hero content */}
         <div className="relative z-10 mx-auto max-w-7xl px-4 pb-16 pt-10 sm:px-6 sm:pb-20 sm:pt-14 md:pb-28">
           <div className="mx-auto flex max-w-5xl flex-col items-center text-center">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white/90 px-4 py-2 text-xs font-medium text-gray-700 shadow-sm backdrop-blur sm:px-6 sm:text-sm">
+            <div className="animate-fadeInUp delay-100 inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white/90 px-4 py-2 text-xs font-medium text-gray-700 shadow-sm backdrop-blur sm:px-6 sm:text-sm">
               <span className="h-2 w-2 rounded-full bg-yellow-500" />
               Over 1,000+ expert interviewers available now
             </div>
 
             {/* Title */}
-            <h1 className="mt-8 font-bold leading-[1.05] text-black text-[34px] sm:text-[52px] md:text-[72px] lg:text-[80px]">
+            <h1 className="animate-fadeInUp delay-200 mt-8 font-bold leading-[1.05] text-black text-[34px] sm:text-[52px] md:text-[72px] lg:text-[80px]">
               How top professionals{" "}
               <span className="block bg-gradient-to-r from-yellow-400 via-yellow-500 to-gray-800 bg-clip-text text-transparent">
                 prepare for interviews
@@ -239,14 +402,14 @@ export default function LandingPage() {
             </h1>
 
             {/* Subtitle */}
-            <p className="mt-6 max-w-2xl text-sm font-normal leading-relaxed text-gray-600 sm:text-base md:mt-8 md:text-lg">
+            <p className="animate-fadeInUp delay-300 mt-6 max-w-2xl text-sm font-normal leading-relaxed text-gray-600 sm:text-base md:mt-8 md:text-lg">
               Practical interview prep loved by 100,000+ candidates and hiring
               managers. Master your next big opportunity with real-world
               practice.
             </p>
 
             {/* CTA */}
-            <div className="mt-8 flex w-full max-w-md flex-col gap-3 sm:mt-10 sm:max-w-none sm:flex-row sm:justify-center sm:gap-4">
+            <div className="animate-fadeInUp delay-400 mt-8 flex w-full max-w-md flex-col gap-3 sm:mt-10 sm:max-w-none sm:flex-row sm:justify-center sm:gap-4">
               <button className="w-full rounded-xl border border-gray-300 bg-white px-6 py-3 text-sm font-bold text-black shadow-sm hover:bg-gray-100 transition sm:w-auto sm:px-7 sm:py-4">
                 Book a Session
               </button>
@@ -266,10 +429,13 @@ export default function LandingPage() {
       </section>
 
       {/* Two Sides, One Mission Section */}
-      <section className="bg-white px-4 py-16 sm:px-6 sm:py-20 md:py-24">
+      <section
+        ref={(el) => (sectionsRef.current[0] = el)}
+        className="scroll-section bg-white px-4 py-16 sm:px-6 sm:py-20 md:py-24"
+      >
         <div className="mx-auto max-w-7xl">
           {/* Header */}
-          <div className="mb-12 text-center sm:mb-16">
+          <div className="animate-fadeInUp mb-12 text-center sm:mb-16">
             <p className="mb-3 text-sm font-semibold tracking-wide text-teal-500">
               WHY COLOQ
             </p>
@@ -286,7 +452,7 @@ export default function LandingPage() {
           {/* Two Cards */}
           <div className="grid gap-6 md:grid-cols-2 md:gap-8">
             {/* For Candidates Card */}
-            <div className="group rounded-2xl bg-white border border-gray-200 p-6 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-pink-300 hover:-translate-y-2 sm:p-8">
+            <div className="animate-fadeInUp delay-100 group rounded-2xl bg-white border border-gray-200 p-6 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-pink-300 hover:-translate-y-2 sm:p-8">
               <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-xl bg-teal-50 transition-all duration-300 group-hover:bg-pink-100 group-hover:scale-110">
                 <Target className="h-8 w-8 text-pink-500 transition-transform duration-300 group-hover:rotate-12" />
               </div>
@@ -330,7 +496,7 @@ export default function LandingPage() {
             </div>
 
             {/* For Expert Interviewers Card */}
-            <div className="group rounded-2xl bg-white border border-gray-200 p-6 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-teal-300 hover:-translate-y-2 sm:p-8">
+            <div className="animate-fadeInUp delay-200 group rounded-2xl bg-white border border-gray-200 p-6 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-teal-300 hover:-translate-y-2 sm:p-8">
               <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-xl bg-teal-50 transition-all duration-300 group-hover:bg-teal-100 group-hover:scale-110">
                 <Briefcase className="h-8 w-8 text-gray-700 transition-all duration-300 group-hover:text-teal-600 group-hover:rotate-12" />
               </div>
@@ -377,10 +543,13 @@ export default function LandingPage() {
       </section>
 
       {/* Pricing Section */}
-      <section className="bg-gray-50 px-4 py-16 sm:px-6 sm:py-20 md:py-24">
+      <section
+        ref={(el) => (sectionsRef.current[1] = el)}
+        className="scroll-section bg-gray-50 px-4 py-16 sm:px-6 sm:py-20 md:py-24"
+      >
         <div className="mx-auto max-w-7xl">
           {/* Header */}
-          <div className="mb-12 text-center sm:mb-16">
+          <div className="animate-fadeInUp mb-12 text-center sm:mb-16">
             <p className="mb-3 text-sm font-semibold tracking-wide text-yellow-500">
               PRICING
             </p>
@@ -393,7 +562,7 @@ export default function LandingPage() {
           </div>
 
           {/* Pricing Cards */}
-          <div className="grid gap-6 md:grid-cols-3 md:gap-8">
+          <div className="animate-fadeInUp delay-100 grid gap-6 md:grid-cols-3 md:gap-8">
             {pricingPlans.map((plan, index) => (
               <PricingCard key={index} {...plan} />
             ))}
@@ -402,12 +571,15 @@ export default function LandingPage() {
       </section>
 
       {/* ////////////////////////////////////////////////////////////////////////// */}
-      <section className="relative overflow-hidden bg-gray-100">
+      <section
+        ref={(el) => (sectionsRef.current[2] = el)}
+        className="scroll-section relative overflow-hidden bg-gray-100"
+      >
         {/* Soft subtle texture */}
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.05),transparent_60%)]" />
 
         {/* Content */}
-        <div className="relative mx-auto flex max-w-7xl flex-col items-center px-4 py-16 text-center sm:px-6 sm:py-20 md:py-24">
+        <div className="animate-fadeInUp relative mx-auto flex max-w-7xl flex-col items-center px-4 py-16 text-center sm:px-6 sm:py-20 md:py-24">
           <h2 className="font-serif text-3xl font-extrabold leading-tight text-gray-900 sm:text-4xl md:text-5xl">
             Ready to Ace Your
             <br />

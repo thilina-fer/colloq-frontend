@@ -64,7 +64,9 @@ export default function ChatbotWidget() {
       "Got it! Is there anything specific about ColoQ you'd like to know?",
       "I'm here to help! You can ask about our services, pricing, or booking a session.",
     ];
-    return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
+    return defaultResponses[
+      Math.floor(Math.random() * defaultResponses.length)
+    ];
   };
 
   // Handle send message
