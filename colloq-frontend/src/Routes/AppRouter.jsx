@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import LandingPage from "../pages/landingPage";
 import CandidateDashboard from "../pages/CandidateDashboard";
 import InterviewerDashboard from "../pages/InterviewerDashboard";
+import LandingPage from "../pages/LandingPage";
 
 function AppRouter() {
   return (
