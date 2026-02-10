@@ -2,8 +2,9 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CandidateDashboard from "../pages/CandidateDashboard";
 import InterviewerDashboard from "../pages/InterviewerDashboard";
-import LandingPage from "../pages/LandingPage";
+import LandingPage from "../pages/landingPage";
 import LoginPage from "../pages/LoginPage";
+import BookingFlow from "../components/bookings/BookingFlow";
 
 function AppRouter() {
   return (
@@ -16,6 +17,7 @@ function AppRouter() {
           element={<InterviewerDashboard />}
         />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/booking" element={<BookingFlow />} />
       </Routes>
     </BrowserRouter>
   );
