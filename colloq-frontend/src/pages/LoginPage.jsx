@@ -17,6 +17,7 @@ import {
   ChevronRight,
   UploadCloud,
 } from "lucide-react";
+import InterviewerRedirectPage from "./InterviewerRedirectPage";
 
 /**
  * Interviewer Redirect Page Component

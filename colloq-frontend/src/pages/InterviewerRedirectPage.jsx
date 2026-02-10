@@ -1,4 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
+import {
+  ShieldCheck,
+  FileText,
+  Briefcase,
+  Linkedin,
+  Github,
+  Clock,
+  ChevronRight,
+  UploadCloud,
+} from "lucide-react";
 
 export const InterviewerRedirectPage = ({ onComplete }) => {
   const [step, setStep] = useState(1);
