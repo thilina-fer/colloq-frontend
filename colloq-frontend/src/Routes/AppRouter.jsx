@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CandidateDashboard from "../pages/CandidateDashboard";
 import InterviewerDashboard from "../pages/InterviewerDashboard";
 import LandingPage from "../pages/LandingPage";
+import LoginPage from "../pages/LoginPage";
 
 function AppRouter() {
   return (
@@ -14,6 +15,7 @@ function AppRouter() {
           path="/interviewer-dashboard"
           element={<InterviewerDashboard />}
         />
+        <Route path="/login" element={<LoginPage />} />
       </Routes>
     </BrowserRouter>
   );
